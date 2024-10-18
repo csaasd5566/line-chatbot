@@ -7,21 +7,22 @@ from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.messaging.models import ReplyMessageRequest, PushMessageRequest
 import json
 import logging
+import os
 from chat_history import chat_history  # 引入聊天记录模块
-
+from dotenv import load_dotenv
 app = Flask(__name__)
 
 # 設定 LINE API
 LINE_CHANNEL_ACCESS_TOKEN = 'R4SST5q9sCTEvKInzc6UI6v5WMNTF7/mVRWDqOSvw3U+DJYDidAaEuC7ufLW8XsPAoeYnwEmSOa9/hCN9t/zFE4ibHaQJEiiRfEym/g7tmiGPx3b7GSfcsZhRYouihZTbvmySB1oQU7/bzkXcALDUwdB04t89/1O/w1cDnyilFU='
 LINE_CHANNEL_SECRET = 'ff23d25e8776a10abb63d58e6b627a45'
-
+load_dotenv()
 configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 api_client = ApiClient(configuration=configuration)
 messaging_api = MessagingApi(api_client)
 handler = WebhookHandler(channel_secret=LINE_CHANNEL_SECRET)
 My_user_id='U4e084814147d5e0eb2ae604395f15751'
 # 設定 OpenAI API
-client = openai.Client(api_key="***REMOVED***")
+client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
 
 # 設定日志
 logging.basicConfig(level=logging.INFO)
