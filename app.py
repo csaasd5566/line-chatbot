@@ -20,10 +20,10 @@ configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 api_client = ApiClient(configuration=configuration)
 messaging_api = MessagingApi(api_client)
 handler = WebhookHandler(channel_secret=LINE_CHANNEL_SECRET)
-My_user_id='U4e084814147d5e0eb2ae604395f15751'
+
 # 設定 OpenAI API
 client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
-
+#print(os.getenv("OPENAI_API_KEY"))
 # 設定日志
 logging.basicConfig(level=logging.INFO)
 # 初始化 MongoDB
